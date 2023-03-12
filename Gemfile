@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -58,10 +61,20 @@ group :development do
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
+  gem "rack-mini-profiler"
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Add schema info as comments at the top of model classes [https://github.com/ctran/annotate_models]
+  gem "annotate"
+
+  gem "rubocop"
+  gem "rubocop-rails"
+  gem 'rubocop-rspec'
+  gem 'rubocop-performance'
+  gem 'rubocop-thread_safety'
+  gem "solargraph"
 end
 
 group :test do
@@ -69,4 +82,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+
+  gem 'rspec-rails'
+  # https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-matchers'
 end
