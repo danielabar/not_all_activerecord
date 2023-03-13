@@ -14,7 +14,7 @@
 #  index_customers_on_email  (email) UNIQUE
 #
 class Customer < ApplicationRecord
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :first_name, presence: true
   validates :last_name, presence: true
 end
