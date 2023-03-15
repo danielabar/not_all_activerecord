@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: %i[show edit update destroy]
 
   # GET /customers or /customers.json
   def index
@@ -22,12 +22,11 @@ class CustomersController < ApplicationController
 
   # POST /customers or /customers.json
   def create
-    # @customer = Customer.new(customer_params)
     @customer_form = CustomerForm.new(customer_form_params)
 
     respond_to do |format|
-      if (@customer = @customer_form.save)
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+      if @customer_form.save
+        format.html { redirect_to customer_url(@customer_form.customer), notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
