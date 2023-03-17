@@ -18,12 +18,6 @@ class CustomersController < ApplicationController
   # TODO: Handle CustomerForm
   # GET /customers/1/edit
   def edit
-    @customer_form = CustomerForm.new(
-      id: @customer.id,
-      email: @customer.email,
-      first_name: @customer.first_name,
-      last_name: @customer.last_name
-    )
   end
 
   # POST /customers or /customers.json
@@ -43,16 +37,13 @@ class CustomersController < ApplicationController
 
   # PATCH/PUT /customers/1 or /customers/1.json
   def update
-    @customer_form = CustomerForm.new(customer_form_params)
-    @customer_form.id = @customer.id
-
     respond_to do |format|
-      if @customer_form.save
-        format.html { redirect_to customer_url(@customer_form.customer), notice: "Customer was successfully updated." }
-        format.json { render :show, status: :ok, location: @customer_form.customer }
+      if @customer.update(customer_params)
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
+        format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @customer_form.errors, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
       end
     end
   end

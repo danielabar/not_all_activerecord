@@ -31,8 +31,5 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
 
-Metrics/MethodLength:
-  Max: 30
-
 Layout/LineLength:
   Max: 200
