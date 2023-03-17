@@ -15,7 +15,6 @@ class CustomersController < ApplicationController
     @customer_form = CustomerForm.new
   end
 
-  # TODO: Handle CustomerForm
   # GET /customers/1/edit
   def edit
   end

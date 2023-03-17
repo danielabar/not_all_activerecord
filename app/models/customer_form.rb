@@ -15,12 +15,11 @@ class CustomerForm
     errors.add(:email, "already taken") if Customer.find_by(email:)
   end
 
-  # TODO: what if we're editing the email address?
-  # Maybe this should only be for creating new customer, and add update method for edits
   def save
     return false unless valid?
 
-    @customer = Customer.find_or_initialize_by(email:)
+    @customer = Customer.new
+    @customer.email = email
     @customer.first_name = first_name
     @customer.last_name = last_name
     @customer.save
