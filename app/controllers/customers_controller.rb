@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: %i[show edit update destroy]
 
   # GET /customers or /customers.json
   def index
@@ -12,7 +12,7 @@ class CustomersController < ApplicationController
 
   # GET /customers/new
   def new
-    @customer = Customer.new
+    @customer_form = CustomerForm.new
   end
 
   # GET /customers/1/edit
@@ -21,15 +21,15 @@ class CustomersController < ApplicationController
 
   # POST /customers or /customers.json
   def create
-    @customer = Customer.new(customer_params)
+    @customer_form = CustomerForm.new(customer_form_params)
 
     respond_to do |format|
-      if @customer.save
-        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully created." }
+      if @customer_form.save
+        format.html { redirect_to customer_url(@customer_form.customer), notice: "Customer was successfully created." }
         format.json { render :show, status: :created, location: @customer }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @customer.errors, status: :unprocessable_entity }
+        format.json { render json: @customer_form.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,13 +58,18 @@ class CustomersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def customer_params
-      params.require(:customer).permit(:email, :first_name, :last_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def customer_params
+    params.require(:customer).permit(:email, :first_name, :last_name)
+  end
+
+  def customer_form_params
+    params.require(:customer_form).permit(:email, :first_name, :last_name, :age)
+  end
 end
