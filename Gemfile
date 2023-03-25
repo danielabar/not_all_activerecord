@@ -85,5 +85,5 @@ group :test do
 
   gem 'rspec-rails'
   # https://github.com/thoughtbot/shoulda-matchers
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', require: false
 end

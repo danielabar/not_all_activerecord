@@ -13,8 +13,18 @@
 #
 #  index_customers_on_email  (email) UNIQUE
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Customer, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject(:customer) { build(:customer) }
+
+  describe "validations" do
+    it { should validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_uniqueness_of(:email) }
+    it { is_expected.to allow_value("email@example.com").for(:email) }
+    it { is_expected.to_not allow_value("not_an_email").for(:email) }
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
+  end
 end
