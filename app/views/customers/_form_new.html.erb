@@ -1,7 +1,7 @@
 <%= form_with(model: customer_form, url: customers_path) do |form| %>
   <% if customer_form.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(customer_form.errors.count, "error") %> prohibited this customer from being saved:</h2>
+      <h2 class="error-header"><%= pluralize(customer_form.errors.count, "error") %> prohibited this customer from being saved:</h2>
 
       <ul>
         <% customer_form.errors.each do |error| %>
