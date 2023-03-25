@@ -24,4 +24,47 @@ RSpec.describe CustomerForm, type: :model do
       end
     end
   end
+
+  describe "#save" do
+    context "when form is valid" do
+      before do
+        customer_form.email = "this_is_good@test.com"
+        customer_form.first_name = "Fred"
+        customer_form.last_name = "Flinstone"
+        customer_form.age = 44
+      end
+
+      it "creates a new customer" do
+        expect { subject.save }.to change(Customer, :count).by(1)
+      end
+
+      it "returns true" do
+        expect(subject.save).to be_truthy
+      end
+
+      it "sets the customer attribute" do
+        subject.save
+        expect(subject.customer).to be_a(Customer)
+      end
+    end
+
+    context "when form is invalid" do
+      before do
+        allow(subject).to receive(:valid?).and_return(false)
+      end
+
+      it "does not create a new customer" do
+        expect { subject.save }.not_to change(Customer, :count)
+      end
+
+      it "returns false" do
+        expect(subject.save).to be_falsey
+      end
+
+      it "does not set the customer attribute" do
+        subject.save
+        expect(subject.customer).to be_nil
+      end
+    end
+  end
 end
