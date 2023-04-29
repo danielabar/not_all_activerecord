@@ -103,6 +103,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.1)
       i18n (>= 1.8.11, < 2)
+    ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -118,6 +119,24 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.6.3)
+    karafka (2.0.41)
+      karafka-core (>= 2.0.12, < 3.0.0)
+      thor (>= 0.20)
+      waterdrop (>= 2.4.10, < 3.0.0)
+      zeitwerk (~> 2.3)
+    karafka-core (2.0.12)
+      concurrent-ruby (>= 1.1)
+      karafka-rdkafka (>= 0.12.1)
+    karafka-rdkafka (0.12.1)
+      ffi (~> 1.15)
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-web (0.5.1)
+      erubi (~> 1.4)
+      karafka (>= 2.0.40, < 3.0.0)
+      karafka-core (>= 2.0.12, < 3.0.0)
+      roda (~> 3.63)
+      tilt (~> 2.0)
     kramdown (2.4.0)
       rexml
     kramdown-parser-gfm (1.1.0)
@@ -134,6 +153,7 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
+    mini_portile2 (2.8.1)
     minitest (5.18.0)
     msgpack (1.6.1)
     net-imap (0.3.4)
@@ -195,6 +215,8 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.2.5)
+    roda (3.67.0)
+      rack
     rspec-core (3.12.1)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
@@ -281,6 +303,9 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.4.2)
+    waterdrop (2.5.2)
+      karafka-core (>= 2.0.12, < 3.0.0)
+      zeitwerk (~> 2.3)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -313,6 +338,8 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  karafka (>= 2.0.34)
+  karafka-web (~> 0.5.1)
   puma (~> 5.0)
   rack-mini-profiler
   rails (~> 7.0.4, >= 7.0.4.2)
